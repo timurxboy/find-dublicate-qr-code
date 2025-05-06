@@ -3,7 +3,7 @@ from tkinter import messagebox, scrolledtext
 import pandas as pd
 from datetime import datetime
 import os
-import platform
+import winsound  # Импортируем модуль для воспроизведения звуков на Windows
 
 scanned_codes = set()
 code_list = []
@@ -21,21 +21,11 @@ if os.path.exists(progress_file):
 
 
 def play_success_sound():
-    system = platform.system()
-    if system == "Darwin":  # macOS
-        os.system('afplay /System/Library/Sounds/Glass.aiff')
-    elif system == "Windows":
-        import winsound
-        winsound.MessageBeep(winsound.MB_OK)
+    winsound.MessageBeep(winsound.MB_OK)
 
 
 def play_error_sound():
-    system = platform.system()
-    if system == "Darwin":
-        os.system('afplay /System/Library/Sounds/Basso.aiff')
-    elif system == "Windows":
-        import winsound
-        winsound.MessageBeep(winsound.MB_ICONHAND)
+    winsound.MessageBeep(winsound.MB_ICONHAND)
 
 
 # Функция проверки и реакции на код
